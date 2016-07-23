@@ -51,8 +51,8 @@ requirejs(["jquery","PIXI",
     // TODO put all man initialization in a initMan function (man "constructor")
     var tryChangingDirection = function(walls, ghosts, direction, dt) {
       var dir = walkDir[direction];
-      var newWalkX = this.x + dir.x;
-      var newWalkY = this.y + dir.y;
+      var newWalkX = this.destX + dir.x;
+      var newWalkY = this.destY + dir.y;
       var tentativeNewPositionUid = _calcUid(newWalkX,newWalkY);
       // check if place already occupied by a wall
       if(!walls[tentativeNewPositionUid]) {
@@ -68,6 +68,17 @@ requirejs(["jquery","PIXI",
       if(!this.dir) return this;
       var newX = this.x + dt*step*this.dir.x;
       var newY = this.y + dt*step*this.dir.y;
+      if( utils.distSqr(this.x, this.y, this.destX, this.destY) < utils.distSqr(this.x, this.y, newX, newY)) {
+          // distance to the destination point is less the step, thus only go to the destination
+          this.x = this.destX;
+          this.y = this.destY;
+          // and stop
+          this.dirt = null;
+      } else {
+          // step
+          this.x = newX;
+          this.y = newY;
+      }
     }
     return level.reduce(function(acc, row, i) {
       for( var j = 0; j < row.length; j++) {
