@@ -10,10 +10,14 @@ I only want to try some functional design ideas.
 - requirejs for modularization
 - pixijs for fast rendering in browser (my favourite)
 
+# Backlog
+
+## in Work
+
+- bind eventQueue to the loop function
+
 ## TODO
 
-- move the man smoothly
-- bind eventQueue to the loop function
 - move the ghosts
 - register collisions ghost man
 - game over when man hit ghost
@@ -25,3 +29,7 @@ I only want to try some functional design ideas.
 - background music
 - more levels
 - random level generator
+
+## DONE
+
+- move the man smoothly
